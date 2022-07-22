@@ -1,0 +1,24 @@
+build-test:
+   stage: build
+   tags:
+     - itemoptix-mobile
+   script:
+     - source ~/.zshrc
+     - flutter build apk
+   except:
+     - develop
+     - staging
+     - master
+     - /^update_.*$/
+installable:
+   stage: deploy
+   tags:
+     - itemoptix-mobile
+   script:
+     - source ~/.zshrc
+     - flutter build apk
+   only:
+     - develop
+     - staging
+     - master
+     - /^update_.*$/
